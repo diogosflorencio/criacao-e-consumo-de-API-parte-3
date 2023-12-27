@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        input {
+            padding: 10px 0px;
+            border: none;
+            width: 100%;
+            background-color: #e0e0e0;
+            color: #333;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            border: solid 1px #333;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .true {
+            color: rgb(39, 182, 82)
+        }
+        .false {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input id="inputNome" value="" type="text">
+        <button id="botaoAdicionar">Adicionar nome</button>
+        <div class="" id="status"></div>
+    </div>
+    <div style="text-align: left;">
+        <button id="botaoAtualizar">Atualizar nomes</button>
+        <div id="container"></div>
+    </div>
+
+    <script>
+        const botaoAtualizar = document.getElementById("botaoAtualizar");
+        const botaoAdicionar = document.getElementById("botaoAdicionar");
+        const inputNome = document.getElementById("inputNome");
+
+        // GET
+
+        const atualizarListaDeNomes = () => {
+            const endpoint = "https://api-teste-2.diogoflorencio.repl.co/";
+            fetch(endpoint)
+                .then(response => response.json())
+                .then(dados => {
+                    listarNomes(dados);
+                });
+        }
+
+        const listarNomes = (nomes) => {
+            document.getElementById('container').innerHTML = "";
+            for(const nome of nomes){
+                
+                const chaves = Object.keys(nome);
+                for (const chave of chaves) {
+                    const valor = nome[chave];
+                    criarLista(valor);
+                }
+            }
+        }
+
+        function criarLista(valor) {
+            document.getElementById('container').appendChild(document.createElement('p')).textContent = valor;
+        }
+
+        // POST
+
+        const status = (valor)=>{
+            if(valor === true){
+                const elemento = document.getElementById('status')
+                elemento.appendChild(document.createElement('p')).textContent = "Salvo no banco de dados";
+                elemento.classList.add('true');
+                setTimeout(()=>{
+                    document.getElementById('status').innerHTML = "";
+                },1500)
+            }else{
+                const elemento = document.getElementById('status')
+                elemento.appendChild(document.createElement('p')).textContent = "Houve algum erro";
+                elemento.classList.add('false');
+                setTimeout(()=>{
+                    document.getElementById('status').innerHTML = "";
+                },3000)
+            }
+        }
+
+        const enviarNome = () => {
+            const dados = {
+                chave: inputNome.value
+            };
+            const cabecalho = {
+                method: "POST",
+                body: JSON.stringify(dados)
+            };
+
+            const endpoint = "https://api-teste-2.diogoflorencio.repl.co/";
+            fetch(endpoint, cabecalho)
+                .then(response => response.json())
+                .then(dados => {
+                    const valorRetornado = dados.success;
+                    status(valorRetornado);
+                });
+        }
+
+        botaoAdicionar.addEventListener("click", () => {
+            enviarNome();
+        });
+
+        botaoAtualizar.addEventListener("click", () => {
+            atualizarListaDeNomes();
+        });
+    </script>
+</body>
+</html>
