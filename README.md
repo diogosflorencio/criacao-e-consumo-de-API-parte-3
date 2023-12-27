@@ -1,4 +1,4 @@
-# Criando e Consumindo uma Simples API com Node.js
+# Criando e Consumindo uma Simples API com Node.js - CHAT
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/diogosflorencio/criacao-e-consumo-de-API?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/diogosflorencio/criacao-e-consumo-de-API?style=for-the-badge)
@@ -53,43 +53,36 @@ http
 
 ---
 
-Link: https://consumindo-api-2.diogoflorencio.repl.co
+Link do chat 1: https://consumindo-api-3.diogoflorencio.repl.co
+Link do chat 2: https://consumindo-api-3-1.diogoflorencio.repl.co
 
 ---
 
 ### Ajustes e Melhorias
 
 O projeto ainda está em desenvolvimento, e as próximas atualizações serão focadas nas seguintes tarefas:
-
-- [x] Criar API
-- [x] Consumir com fetch no front
-- [x] Criar front e hospedar tudo
-- [x] Modificar o back para selecionar palavras de um array
-- [x] Modificar o front para permitir a adição de novas palavras via API
-- [x] Modificar a API para aceitar POST ou PUT
-- [x] Finalizar o projeto
+- [x] Organizar repositórios
+- [ ] Criar interface do chat
+- [ ] Criar forma de indentificar cada um dos usuários no chat
+- [ ] Criar forma de atualizar as mensagens automaticamente
+- [ ] Fazer testes e correções
+- [ ] Finalizado
 
 ## 💻 Pré-requisitos
 
-Não há pré-requisitos para começar. Basta clicar no [link do projeto](https://consumindo-api-2.diogoflorencio.repl.co/).
+Pré-requisitos, não obrigatórios, para o uso: ter uma outra pessoa para conversar.  [Link do chat 1](https://consumindo-api-3.diogoflorencio.repl.co/) e no [Link do chat 2](https://consumindo-api-3-1.diogoflorencio.repl.co/).
 
 ## 🚀 Instalando "Criando e Consumindo uma API com Node.js"
 
 Para instalar o projeto, basta clonar o repositório:
 
 ```
-git clone https://github.com/diogosflorencio/criacao-e-consumo-de-API-parte-2
+git clone https://github.com/diogosflorencio/criacao-e-consumo-de-API-parte-3
+git clone https://github.com/diogosflorencio/criacao-e-consumo-de-API-parte-3-1
+E o código da API a cima.
 ```
 
-## ☕ Usando Criando e Consumindo uma API com Node.js
-
-Para utilizar o projeto, siga estas etapas:
-
-```
-Basta clicar em "GERAR"
-```
-
-## 📫 Contribuindo para "Criando e Consumindo uma API com Node.js"
+## 📫 Contribuindo para "Criando e Consumindo uma API com Node.js - CHAT"
 
 Para contribuir com o projeto, siga estas etapas:
 
