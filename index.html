@@ -4,245 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat - 1</title>
-    <link rel="stylesheet" href="style.cssx">
-    <style>
-        body{
-            background-color: rgb(0, 0, 0);
-        }
-        .chat {
-            background-color: rgb(223, 223, 223);
-            position: absolute;
-            width: 300px;
-            height: 600px;
-            border-radius: 10px;
-            right: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px;
-            box-shadow:0px 0px 0px 5px rgb(109, 109, 109);
-        }
-        #tagArea {
-            background-color: rgb(46, 46, 46);
-            position: absolute;
-            width: 150px;
-            height: 30px;
-            border-radius: 9px 0px 10px 0px ;
-            color: rgb(233, 233, 233);
-            font-family: monospace;
-            box-sizing: border-box;
-            padding: 7px 0px 0px 5px;
-        }
-        #popUp {
-            background-color: rgba(82, 82, 82, 0.822);
-            box-shadow: 3px 3px 2px rgba(44, 44, 44, 0.377);
-            position: absolute;
-            width: 200px;
-            height: 20px;
-            border-radius: 5px;
-            right: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            padding: 7px;
-            color: rgb(204, 217, 228);
-        }
-        #userInput{
-            width: 115px;
-            border-radius: 5px;
-            border: none;
-        }
-        #userInput:focus{
-            outline: none;
-            border: none;
-            color: rgb(255, 255, 255);
-            background-color: black;
-        }
-        #nomeBotao {
-            background-color:  rgba(82, 82, 82, 0.822);
-            position: absolute;
-            width: 70px;
-            height: 20px;
-            border-radius: 5px;
-            border: none;
-            right: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, 120%);
-            color: rgb(204, 217, 228);
-        }
-        #nomeBotao:active {
-            background-color:  rgba(31, 31, 31, 0.822);
-        }
-        #msgInput {
-            width: 115px;
-            border-radius: 5px;
-            border: none;
-            height: 25px;
-            width: 250px;
-            font-size: 16px;
-        }
-        #msgInput:focus {
-            outline: none;
-            border: none;
-        }
-        #inputMsgArea {
-            background-color: rgb(109, 109, 109);
-            position: absolute;
-            width: 306px;
-            height: 24px;
-            right: 50%;
-            left: 50%;
-            top: 97%;
-            transform: translate(-50%, -50%);
-            padding: 7px;
-            color: rgb(204, 217, 228);
-        }
-        #enviarMsg {
-            background-color:  rgba(59, 59, 59, 0.822);
-            position: absolute;
-            width: 50px;
-            height: 27px;
-            border-radius: 10px;
-            border: none;
-            right: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(211%, -47%);
-            color: rgb(204, 217, 228);
-        }
-        #enviarMsg:active {
-            background-color:  rgba(29, 29, 29, 0.822);
-        }
-        .none {
-            display: none;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="style.css">
+</style>
 </head>
 <body>
     <main>
         <div class="chat">
-            <div id="tagArea" class="none">@Diogo Silva</div>
-            
+            <div id="tagArea" class="none"></div>
             <div id="popUp">
-                Seu nome: <input type="text" value="@" id="userInput">
+                <label>Seu nome: </label>
+                <input type="text" value="@" id="userInput">
                 <button id="nomeBotao" class="">SALVAR</button>
             </div>
 
             <div id="inputMsgArea" class="none">
-                <input type="text" value="" id="msgInput">
+                <input type="text" value="" maxlength="28" placeholder="Digite sua mensagem aqui" id="msgInput" >
                 <button id="enviarMsg">Enviar</button>
             </div>
 
-            <!-- adicionar as caixas de mensagens -->
+            <div id="conteinerMsg">
+                <div id="mensagens" class="none">
+                    <div id="loadingContainer">
+                        <div class="loading"></div>
+                        <div class="loading"></div>
+                        <div class="loading"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
-    
-    <!-- <div>
-        <input id="inputNome" value="" type="text">
-        <button id="botaoAdicionar">Adicionar nome</button>
-        <div class="" id="status"></div>
-    </div>
-    <div style="text-align: left;">
-        <button id="botaoAtualizar">Atualizar nomes</button>
-        <div id="container"></div>
-    </div> -->
-
-    <script>
-        const botaoAtualizar = document.getElementById("botaoAtualizar");
-        const botaoAdicionar = document.getElementById("botaoAdicionar");
-        const inputNome = document.getElementById("inputNome");
-
-        // elementos da interface 
-
-        const nomeBotao = document.getElementById("nomeBotao");
-        const popUp = document.getElementById("popUp");
-        const userInput = document.getElementById("userInput");
-        const tagArea = document.getElementById("tagArea");
-        const inputMsgArea = document.getElementById("inputMsgArea");
-        
-        // nome do usuário   
-
-        nomeBotao.addEventListener("click", () => {
-            tagArea.classList.remove("none");
-            tagArea.innerHTML = userInput.value;
-            popUp.classList.add("none");
-            inputMsgArea.classList.remove("none");
-        })
-
-        // GET
-
-        const atualizarListaDeNomes = () => {
-            const endpoint = "https://api-teste-3.diogoflorencio.repl.co/";
-            fetch(endpoint)
-                .then(response => response.json())
-                .then(dados => {
-                    listarNomes(dados);
-                });
-        }
-
-        const listarNomes = (nomes) => {
-            document.getElementById('container').innerHTML = "";
-            for(const nome of nomes){
-                
-                const chaves = Object.keys(nome);
-                for (const chave of chaves) {
-                    const valor = nome[chave];
-                    criarLista(valor);
-                }
-            }
-        }
-
-        function criarLista(valor) {
-            document.getElementById('container').appendChild(document.createElement('p')).textContent = valor;
-        }
-
-        // POST
-
-        const status = (valor)=>{
-            if(valor === true){
-                const elemento = document.getElementById('status')
-                elemento.appendChild(document.createElement('p')).textContent = "Salvo no banco de dados";
-                elemento.classList.add('true');
-                setTimeout(()=>{
-                    document.getElementById('status').innerHTML = "";
-                },1500)
-            }else{
-                const elemento = document.getElementById('status')
-                elemento.appendChild(document.createElement('p')).textContent = "Houve algum erro";
-                elemento.classList.add('false');
-                setTimeout(()=>{
-                    document.getElementById('status').innerHTML = "";
-                },3000)
-            }
-        }
-
-        const enviarNome = () => {
-            const dados = {
-                chave: inputNome.value
-            };
-            const cabecalho = {
-                method: "POST",
-                body: JSON.stringify(dados)
-            };
-
-            const endpoint = "https://api-teste-2.diogoflorencio.repl.co/";
-            fetch(endpoint, cabecalho)
-                .then(response => response.json())
-                .then(dados => {
-                    const valorRetornado = dados.success;
-                    status(valorRetornado);
-                });
-        }
-
-        botaoAdicionar.addEventListener("click", () => {
-            enviarNome();
-        });
-
-        botaoAtualizar.addEventListener("click", () => {
-            atualizarListaDeNomes();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
