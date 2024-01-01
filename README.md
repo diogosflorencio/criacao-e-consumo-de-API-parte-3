@@ -6,7 +6,10 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/diogosflorencio/criacao-e-consumo-de-API?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/diogosflorencio/criacao-e-consumo-de-API?style=for-the-badge)
 
-<img src="https://github.com/diogosflorencio/criacao-e-consumo-de-API-parte-2/assets/33941005/609ead28-8a1e-443e-b9d6-65ec0025271d" style="width:100%" alt="Exemplo de imagem">
+<img src="https://github.com/diogosflorencio/criacao-e-consumo-de-API-parte-3/assets/33941005/39be1395-30c4-4e4d-a4c5-732e7ced478f" style="width:30%" alt="Exemplo de imagem">
+<img src="https://github.com/diogosflorencio/criacao-e-consumo-de-API-parte-3/assets/33941005/98dac789-4133-4833-bb82-48022539a603" style="width:30%" alt="Exemplo de imagem">
+<img src="https://github.com/diogosflorencio/criacao-e-consumo-de-API-parte-3/assets/33941005/29cb4eda-6940-4277-a3f7-ce3d401e8993" style="width:30%" alt="Exemplo de imagem">
+
 
 > Explorando os conceitos de requisições GET e POST em uma API que armazena valores do usuário no backend e os exibe no frontend. A API é implementada e hospedada no Replit, enquanto o frontend faz uso da promise `fetch` para interagir com a API e manipular os dados
 
