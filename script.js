@@ -34,14 +34,10 @@ const atualizarListaDeNomes = () => {
             console.log(dados)
         });
 }
-const listarNomes = (nomes) => {
-    for(const nome of nomes){
-        const chaves = Object.keys(nome);
-        for (const chave of chaves) {
-            const valor = nome[chave];
-            criarLista(valor);
-        }
-    }
+const listarNomes = (nome) => {
+    const chave = Object.keys(nome);
+    const valor = nome[chave];
+    criarLista(valor);
 }
 function criarLista(valor) {
     mensagensHistorico.appendChild(document.createElement('p')).textContent = valor;
@@ -64,14 +60,15 @@ const enviarNome = () => {
 
     const endpoint = "https://api-teste-3.diogoflorencio.repl.co/";
     fetch(endpoint, cabecalho)
-        .then(response => response.json())
-        .then(dados => {
-            const valorRetornado = dados.success;
-        });
+        // .then(response => response.json())
+        // .then(dados => {
+        //     const valorRetornado = dados.success;
+        // });
 }
 
 enviarMsg.addEventListener("click", () => {
     enviarNome();
     msgInput.value = "";
-    atualizarListaDeNomes();
+    atualizarListaDeNomes()
+    
 });
