@@ -1,50 +1,170 @@
-body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
-    margin: 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+body{
+    background-color: rgb(0, 0, 0);
 }
-
-input {
-    padding: 10px 0px;
-    border: none;
-    width: 100%;
-    background-color: #e0e0e0;
-    color: #333;
-    font-size: 16px;
+.chat {
+    background-color: rgb(223, 223, 223);
+    position: absolute;
+    width: 300px;
+    height: 600px;
+    border-radius: 10px;
+    right: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    box-shadow:0px 0px 0px 5px rgb(109, 109, 109);
+}
+#tagArea {
+    background-color: rgb(46, 46, 46);
+    position: relative;
+    width: 150px;
+    height: 30px;
+    border-radius: 9px 0px 10px 0px ;
+    color: rgb(233, 233, 233);
+    font-family: monospace;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    padding: 7px 0px 0px 5px;
+}
+#popUp {
+    background-color: rgba(82, 82, 82, 0.822);
+    box-shadow: 3px 3px 2px rgba(44, 44, 44, 0.377);
+    position: absolute;
+    width: 200px;
+    height: 20px;
     border-radius: 5px;
-    margin-bottom: 10px;
+    right: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 7px;
+    color: rgb(204, 217, 228);
+}
+#userInput{
+    width: 115px;
+    border-radius: 5px;
+    border: none;
+}
+#userInput:focus{
     outline: none;
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: black;
 }
-
-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
+#nomeBotao {
+    background-color:  rgba(82, 82, 82, 0.822);
+    position: absolute;
+    width: 70px;
+    height: 20px;
+    border-radius: 5px;
+    border: none;
+    right: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 120%);
+    color: rgb(204, 217, 228);
+    box-shadow: 3px 3px 3px rgba(44, 44, 44, 0.329);
+}
+#nomeBotao:active {
+    background-color:  rgba(31, 31, 31, 0.822);
+}
+#msgInput {
+    width: 115px;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    width: 250px;
     font-size: 16px;
+}
+#msgInput:focus {
+    outline: none;
+    border: none;
+}
+#inputMsgArea {
+    background-color: rgb(109, 109, 109);
+    position: absolute;
+    width: 306px;
+    height: 24px;
+    right: 50%;
+    left: 50%;
+    top: 97%;
+    transform: translate(-50%, -50%);
+    padding: 7px;
+    color: rgb(204, 217, 228);
+}
+#enviarMsg {
+    background-color:  rgba(59, 59, 59, 0.822);
+    position: absolute;
+    width: 50px;
+    height: 27px;
     border-radius: 10px;
-    border: solid 1px #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    border: none;
+    right: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(211%, -47%);
+    color: rgb(204, 217, 228);
+}
+#enviarMsg:active {
+    background-color:  rgba(29, 29, 29, 0.822);
+}
+#conteinerMsg {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 94%; 
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    scrollbar-width: thin;
 }
 
-button:hover {
-    background-color: #555;
+#conteinerMsg::-webkit-scrollbar {
+    width: 5px;
+}
+  
+#conteinerMsg::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+  
+#conteinerMsg::-webkit-scrollbar-track {
+    background-color: #da2a2a00;
+}
+#mensagens {
+    background-color: #3d3d3d;
+    border-radius: 10px;
+    color: #c0c0c0;
+    max-width: fit-content;
+    margin-top: auto;
+    margin-bottom: 30px;
+    padding: 5px; 
+}
+#loadingContainer {
+    display: flex;
+    align-items: center;
+}
+.loading {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgb(124, 124, 124);
+    margin-right: 4px;
+    animation: loading 1s infinite;
+}
+.loading:nth-child(2) {
+    animation-delay: 0.1s; /* Atraso para o segundo item */
 }
 
-#container {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.loading:nth-child(3) {
+    animation-delay: 0.2s; /* Atraso para o terceiro item */
 }
-.true {
-    color: rgb(39, 182, 82)
+
+@keyframes loading {
+    0%, 100% {
+        transform: scale(1); /* Tamanho inicial e final para todos */
+    }
+    50% {
+        transform: scale(1.5); /* Cresce no meio */
+    }
 }
-.false {
-    color: red;
+.none {
+    display: none;
 }
