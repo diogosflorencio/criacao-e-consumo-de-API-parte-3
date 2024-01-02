@@ -44,13 +44,20 @@ http
         res.end(JSON.stringify({ success: true }));
       });
     } else if (req.method === "GET") {
-      const nomesData = db['nomes'] || {};
-      res.end(JSON.stringify(nomesData));
-      console.log(nomesData);
+        const nomesData = db['nomes'] || [];
+
+        if (nomesData.length > 0) {
+            const ultimoNome = nomesData[nomesData.length - 1];
+            res.end(JSON.stringify(ultimoNome));
+            console.log(ultimoNome);
+        } else {
+            res.end(JSON.stringify({ message: "Nenhum nome encontrado." }));
+        }
     }
   })
   .listen(8080, () => {
   });
+
 
 ```
 
